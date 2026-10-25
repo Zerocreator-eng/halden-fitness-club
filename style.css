@@ -164,20 +164,30 @@ header {
 
 /* ---------- Hero ---------- */
 .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    position: relative;
+    isolation: isolate;
+    display: flex;
     align-items: center;
+    max-width: none;
     min-height: calc(100vh - 73px);
+    padding-inline: max(24px, calc((100vw - 1100px) / 2));
+    background: url("images/hero-bg.jpg") center / cover no-repeat;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgba(16, 32, 28, 0.92) 0%, rgba(16, 32, 28, 0.6) 55%, rgba(16, 32, 28, 0.2) 100%);
 }
 
-.hero-content p {
-    max-width: 46ch;
+.hero-content {
+    max-width: 640px;
 }
+
 
 .hero-rotator {
-    font-size: 1.15rem;
-    color: var(--accent);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
 }
 
 .hero-rotator,
@@ -483,10 +493,11 @@ footer {
     }
 
     .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        gap: 32px;
-    }
+    min-height: 70vh;
+}
+.hero::before {
+    background: rgba(16, 32, 28, 0.78);
+}
 
     .contact-layout {
         grid-template-columns: 1fr;
